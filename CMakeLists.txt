@@ -50,8 +50,8 @@ target_include_directories(libvncxx PUBLIC
 include(create_package)
 make_cmake_package(libvncxx libvncxx)
 install(
-    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
+    DIRECTORY include/
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
     FILES_MATCHING PATTERN "*.h" 
     )
 #add_subdirectory(examples/ez_async_data)
