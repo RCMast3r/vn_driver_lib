@@ -675,6 +675,7 @@ void VnSensor::connect(IPort* simplePort)
 	}
 }
 
+
 void VnSensor::disconnect()
 {
 	if (_pi->port == NULL || !_pi->port->isOpen())

@@ -10,6 +10,9 @@
 	#include <sys/time.h>
 	#include <mach/clock.h>
 	#include <mach/mach.h>
+#elif __IMXRT1062__
+	#include "Arduino.h"	
+
 #else
 	#error "Unknown System"
 #endif
@@ -62,6 +65,8 @@ struct Stopwatch::Impl
 		_counterStart(-1)
 		#elif __linux__ || __APPLE__ || __CYGWIN__ || __QNXNTO__
 		_clockStart(-1)
+		#elif __IMXRT1062__
+
 		#else
 		#error "Unknown System"
 		#endif
@@ -107,7 +112,8 @@ struct Stopwatch::Impl
 		mach_port_deallocate(mach_task_self(), cclock);
 		
 		_clockStart = (mts.tv_sec * 1000.0) + (mts.tv_nsec / 1000000.0);
-
+		#elif __IMXRT1062__
+		_clockStart = millis()
 		#else
 		#error "Unknown System"
 		#endif
@@ -153,6 +159,8 @@ struct Stopwatch::Impl
 		
 		return (mts.tv_sec * 1000.0) + (mts.tv_nsec / 1000000.0) - _clockStart;
 
+		#elif __IMXRT1062__
+			return millis() - _clockStart;
 		#else
 		#error "Unknown System"
 		#endif

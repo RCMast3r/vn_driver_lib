@@ -2,9 +2,9 @@
 { stdenv, cmake_macros, cmake }:
 
 stdenv.mkDerivation rec {
-  pname = "vn_lib";
+  pname = "vn_lib_cpp";
   version = "0.1.0";
-  src = ./.;
+  src = ./cpp;
   nativeBuildInputs = [ cmake_macros cmake ];
   # dontPatch = true;
   # dontFixup = true;

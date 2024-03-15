@@ -3,7 +3,6 @@
 
 namespace vn {
 namespace math {
-
 float rad2deg(float angleInRads)
 {
 	return angleInRads * 180.0f / PIf;

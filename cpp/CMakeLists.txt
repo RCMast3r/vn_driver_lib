@@ -14,7 +14,6 @@ find_package(cmake_macros)
 
 #set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-
 set(SOURCE
         src/attitude.cpp
         src/compositedata.cpp
