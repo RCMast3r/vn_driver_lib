@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     utils.url = "github:numtide/flake-utils";
-    easy_cmake.url = "github:RCMast3r/easy_cmake";
+    easy_cmake.url = "github:RCMast3r/easy_cmake/5be1d78ff8383590a3cf5ed3680554d8e619489e";
   };
   outputs = { self, nixpkgs, utils, easy_cmake }:
     let
@@ -24,9 +24,26 @@
         system = "aarch64-darwin";
         overlays = [ self.overlays.default ];
       };
+      pkgs_aarch64_linux = import nixpkgs {
+        system = "aarch64-linux";
+        overlays = [ self.overlays.default ];
+      };
     in
     {
       overlays.default = nixpkgs.lib.composeManyExtensions my_overlays;
+
+      legacyPackages.x86_64-linux =
+        import nixpkgs {
+          system = "x86_64-linux";
+          overlays = [
+            # vn_driver_lib.overlays.default
+            # nebs-packages.overlays.default
+            easy_cmake.overlays.default
+            self.overlays.default
+          ];
+          # self.overlays.db_overlay];
+          # ] ++ data_acq.overlays.x86_64-linux ++ (nix-proto.lib.overlayToList nix-proto-foxglove-overlays);
+        };
 
       packages.x86_64-linux =
         rec {
@@ -41,6 +58,14 @@
           py_vn_lib = pkgs_aarch64_darwin.py_vn_lib;
           default = vn_lib;
         };
+      packages.aarch64-linux =
+        rec {
+          vn_lib = pkgs_aarch64_linux.vn_lib;
+          py_vn_lib = pkgs_aarch64_linux.py_vn_lib;
+          default = vn_lib;
+        };
+
+
 
       devShells.x86_64-linux.default =
         pkgs_x86_64_linux.mkShell rec {
@@ -86,4 +111,5 @@
 
     };
 }
+
 

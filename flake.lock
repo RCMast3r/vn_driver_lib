@@ -6,16 +6,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1696028845,
-        "narHash": "sha256-i3rPkVz8xmQwAkC5LAejXB2Hd8Is4sHXaniQEvxsfjQ=",
+        "lastModified": 1696029959,
+        "narHash": "sha256-TF8u57hb+0Vq/Z2fG9nE0/0iQV/bMb+v+eLtL76ttFM=",
         "owner": "RCMast3r",
         "repo": "easy_cmake",
-        "rev": "c3308d4f359bb29dd7aa323a186b9d0af334ee21",
+        "rev": "5be1d78ff8383590a3cf5ed3680554d8e619489e",
         "type": "github"
       },
       "original": {
         "owner": "RCMast3r",
         "repo": "easy_cmake",
+        "rev": "5be1d78ff8383590a3cf5ed3680554d8e619489e",
         "type": "github"
       }
     },
